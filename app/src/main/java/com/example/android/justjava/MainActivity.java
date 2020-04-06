@@ -10,14 +10,23 @@ import java.text.NumberFormat;
 
 public class MainActivity extends AppCompatActivity {
 
+    int numCoffee=0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
     public void submitOrder(View view) {
-        int numCoffee=0;
         display(numCoffee);
+        displayPrice(numCoffee*5);
+    }
+    public void increaseOrder(View view) {
+        display(numCoffee = numCoffee+1);
+        displayPrice(numCoffee*5);
+    }
+    public void decreaseOrder(View view) {
+        display(numCoffee = numCoffee-1);
         displayPrice(numCoffee*5);
     }
 
