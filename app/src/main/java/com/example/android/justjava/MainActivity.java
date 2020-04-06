@@ -23,11 +23,9 @@ public class MainActivity extends AppCompatActivity {
     }
     public void increaseOrder(View view) {
         display(numCoffee = numCoffee+1);
-        displayPrice(numCoffee*5);
     }
     public void decreaseOrder(View view) {
         display(numCoffee = numCoffee-1);
-        displayPrice(numCoffee*5);
     }
 
     /**
