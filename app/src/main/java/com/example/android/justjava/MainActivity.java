@@ -24,9 +24,20 @@ public class MainActivity extends AppCompatActivity {
 
     public void submitOrder(View view) {
         int price = numCoffee*5;
-        String displayCost = "Total:$"+ price;
-        displayCost= displayCost + "\nThank you!";
-        displayMessage(displayCost);
+        String totalMessage = createOrderSummary(price);
+        displayMessage(totalMessage);
+
+        calculatePrice(numCoffee, price);
+    }
+
+    private void calculatePrice(int numCoffee, int pricePerCup){
+        int price= numCoffee*5;
+    }
+
+    private String createOrderSummary(int price){
+        String totalMessage = "Name: Jenna Koslowski" ;
+        totalMessage = totalMessage + "\nTotal:$"+ price;
+        return totalMessage;
     }
 
     public void increaseOrder(View view) {
