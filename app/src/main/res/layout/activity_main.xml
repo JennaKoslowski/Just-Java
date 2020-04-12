@@ -19,7 +19,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/wc"
-        android:padding="24dp"
+        android:paddingLeft="24dp"
+        android:textSize="16sp"/>
+    <CheckBox
+        android:id="@+id/chocolate_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/chocolate"
+        android:paddingLeft="24dp"
         android:textSize="16sp"/>
 
     <TextView
