@@ -10,6 +10,21 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/toppings"
+        android:textAllCaps="true"
+        android:padding="20dp"/>
+    
+    <CheckBox
+        android:id="@+id/whipped_cream_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/wc"
+        android:padding="24dp"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/quantity"
         android:textAllCaps="true"
         android:padding="20dp"/>
