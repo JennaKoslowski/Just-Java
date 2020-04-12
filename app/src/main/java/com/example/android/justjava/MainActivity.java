@@ -1,8 +1,10 @@
 package com.example.android.justjava;
 
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,8 +27,11 @@ public class MainActivity extends AppCompatActivity {
         CheckBox chocolateCheckbox = (CheckBox) findViewById(R.id.chocolate_checkbox);
         boolean hasChocolateDrizzle = chocolateCheckbox.isChecked();
 
+        EditText nameText = (EditText) findViewById(R.id.name_input);
+        Editable names = nameText.getText();
+
         int price = numCoffee*5;
-        String totalMessage = createOrderSummary(price, hasWhippedCream, hasChocolateDrizzle);
+        String totalMessage = createOrderSummary(price, hasWhippedCream, hasChocolateDrizzle, names);
         displayMessage(totalMessage);
 
         calculatePrice(numCoffee, price);
@@ -36,8 +41,8 @@ public class MainActivity extends AppCompatActivity {
         int price= numCoffee*5;
     }
 
-    private String createOrderSummary(int price, boolean hasWhippedCream, boolean hasChocolateDrizzle){
-        String totalMessage = "Name: Jenna Koslowski" ;
+    private String createOrderSummary(int price, boolean hasWhippedCream, boolean hasChocolateDrizzle, Editable names){
+        String totalMessage = "Name: " + names;
         totalMessage= totalMessage + "\nQuantity: " +numCoffee;
         totalMessage= totalMessage + "\nHas Whipped Cream? " + hasWhippedCream;
         totalMessage= totalMessage + "\nHas Chocolate Drizzle? " + hasChocolateDrizzle;
