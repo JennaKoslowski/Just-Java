@@ -8,8 +8,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.text.NumberFormat;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,23 +28,28 @@ public class MainActivity extends AppCompatActivity {
         EditText nameText = (EditText) findViewById(R.id.name_input);
         Editable names = nameText.getText();
 
-        int price = numCoffee*5;
-        String totalMessage = createOrderSummary(price, hasWhippedCream, hasChocolateDrizzle, names);
+        int pricePerCup = calculatePrice(hasWhippedCream, hasChocolateDrizzle);
+        String totalMessage = createOrderSummary(pricePerCup, hasWhippedCream, hasChocolateDrizzle, names);
         displayMessage(totalMessage);
-
-        calculatePrice(numCoffee, price);
     }
 
-    private void calculatePrice(int numCoffee, int pricePerCup){
-        int price= numCoffee*5;
+    private int calculatePrice(boolean hasWhippedCream, boolean hasChocolateDrizzle){
+       int pricePerCup = 5;
+        if (hasWhippedCream == true) {
+            pricePerCup += 1;
+        }
+        if (hasChocolateDrizzle == true){
+            pricePerCup +=2;
+        }
+        return numCoffee*pricePerCup;
     }
 
-    private String createOrderSummary(int price, boolean hasWhippedCream, boolean hasChocolateDrizzle, Editable names){
+    private String createOrderSummary(int pricePerCup, boolean hasWhippedCream, boolean hasChocolateDrizzle, Editable names){
         String totalMessage = "Name: " + names;
         totalMessage= totalMessage + "\nQuantity: " +numCoffee;
         totalMessage= totalMessage + "\nHas Whipped Cream? " + hasWhippedCream;
         totalMessage= totalMessage + "\nHas Chocolate Drizzle? " + hasChocolateDrizzle;
-        totalMessage = totalMessage + "\nTotal: $"+ price;
+        totalMessage = totalMessage + "\nTotal: $"+ pricePerCup;
         return totalMessage;
     }
 
