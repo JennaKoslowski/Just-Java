@@ -1,5 +1,7 @@
 package com.example.android.justjava;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.View;
@@ -32,7 +34,14 @@ public class MainActivity extends AppCompatActivity {
 
         int pricePerCup = calculatePrice(hasWhippedCream, hasChocolateDrizzle);
         String totalMessage = createOrderSummary(pricePerCup, hasWhippedCream, hasChocolateDrizzle, names);
-        displayMessage(totalMessage);
+
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:"));
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Just Java order for "+ names);
+        intent.putExtra(Intent.EXTRA_TEXT, totalMessage);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
     }
 
     private int calculatePrice(boolean hasWhippedCream, boolean hasChocolateDrizzle){
@@ -46,14 +55,14 @@ public class MainActivity extends AppCompatActivity {
         return numCoffee*pricePerCup;
     }
 
-    private String createOrderSummary(int pricePerCup, boolean hasWhippedCream, boolean hasChocolateDrizzle, Editable names){
+   private String createOrderSummary(int pricePerCup, boolean hasWhippedCream, boolean hasChocolateDrizzle, Editable names){
         String totalMessage = "Name: " + names;
-        totalMessage= totalMessage + "\nQuantity: " +numCoffee;
-        totalMessage= totalMessage + "\nHas Whipped Cream? " + hasWhippedCream;
-        totalMessage= totalMessage + "\nHas Chocolate Drizzle? " + hasChocolateDrizzle;
-        totalMessage = totalMessage + "\nTotal: $"+ pricePerCup;
-        return totalMessage;
-    }
+       totalMessage= totalMessage + "\nQuantity: " +numCoffee;
+       totalMessage= totalMessage + "\nHas Whipped Cream? " + hasWhippedCream;
+       totalMessage= totalMessage + "\nHas Chocolate Drizzle? " + hasChocolateDrizzle;
+       totalMessage = totalMessage + "\nTotal: $"+ pricePerCup;
+       return totalMessage;
+   }
 
     public void increaseOrder(View view) {
         if (numCoffee==100){
@@ -75,13 +84,5 @@ public class MainActivity extends AppCompatActivity {
     private void displayQuantity(int amount) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + amount);
-    }
-
-    /**
-     * This method displays the given text on the screen.
-     */
-    private void displayMessage(String message) {
-        TextView priceTextView = (TextView) findViewById(R.id.order_summary_text_view);
-        priceTextView.setText(message);
     }
 }
